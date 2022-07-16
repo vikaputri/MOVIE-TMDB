@@ -7,7 +7,7 @@ import requests
 from datetime import datetime
 from .models import Fav_Movie, Watchlist_Movie
 
-api_key = "51bdd827768a48612af8d3a0bd074a01"
+api_key = "***"
 movie_all = "https://api.themoviedb.org/3/trending/movie/day?api_key={api_key}&page={number}"
 movie_id = "https://api.themoviedb.org/3/movie/{id}?api_key={api_key}"
 video_id = "https://api.themoviedb.org/3/movie/{id}/videos?api_key={api_key}"
