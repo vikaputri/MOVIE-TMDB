@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+<header 
+    style="
+        background-image: url('https://img.freepik.com/free-photo/assortment-cinema-elements-red-background-with-copy-space_23-2148457848.jpg?t=st=1657808290~exp=1657808890~hmac=68976f9c892a3dd8d9aead833bb516f64415dc67fea123aedda2f91bb5dc4ae7&w=826'); 
+        background-size: cover; 
+        background-repeat: no-repeat;"
+    >
+    <nav class="py-4 navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bolder px-2" href="{% url 'home' %}">Home</a>
+            <!--toggler-->
+            <button class="navbar-toggler" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav ms-auto me-3 me-lg-5rem">
+                    <li class="nav-item dropdown">
+                        <a class="btn btn-primary dropdown-toggle text-white btn-xlg" 
+                            id="navbarDropdown" 
+                            href="#" 
+                            role="button" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false">
+                            <i class="fas fa-user fa-fw"></i> {{user.username}}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'watchlist' %}">Watchlist</a></li>
+                            <li><a class="dropdown-item" href="{% url 'saved' %}">Saved</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+          
+                {% else %}
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item text-uppercase px-2">
+                        <a class="btn btn-primary mb-3" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item text-uppercase px-2">
+                        <a class="btn btn-primary" href="{% url 'signup' %}">Register</a>
+                    </li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="py-5">
+        <div class="container py-5">
+            <div class="row gx-5 align-items-center justify-content-center mb-5 mt-4">
+                <div class="col-lg-8 col-xl-7 col-xxl-6">
+                    <div class="my-5 text-center text-xl-start text-white">
+                        <h1 class="display-5 fw-bolder mb-3">MOVIE TMDB</h1>
+                        <p class="lead fw-normal mb-5">
+                            List Movie From The Movie Database (TMDB) that is a community built movie and TV database.
+                        </p>
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#list">Show List Movie</a>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-xxl-6 text-center">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+</header>
+
+<div class="container mt-5 mb-5" id="list">
+    <h1 class="text-center mb-5">LIST MOVIE</h1>
+    <div class="row mb-3">
+        {% for a in page_obj %}
+        <div class="col-md-3 mb-5">
+            <div class="card h-100">
+                <a href="/movie/{{a.id}}">
+                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/{{ a.poster_path }}" alt="poster">
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title" style="font-weight:bolder;">{{ a.title }}</h5>
+                  <p class="card-text">
+                    <i class="fas fa-star" style="color:gold"></i>
+                    <i class="fas fa-star" style="color:gold"></i>
+                    <i class="fas fa-star" style="color:gold"></i>
+                    <i class="fas fa-star" style="color:gold"></i>
+                    <i class="fas fa-star" style="color:gold"></i>
+                    <h4>{{ a.vote_count }} voters</h4>
+                  </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1">First</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% endif %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="#">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
+<!-- Footer-->
+<footer class="bg-dark py-4 text-white">
+    <div class="footer-middle">
+        <div class="container">
+            <div class="row">
+                <p class="text-center">Vika Putri Ariyanti @ 2022</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}

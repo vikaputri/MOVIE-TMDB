@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<section class="py-5 mb-2">
+  <div class="container px-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <!--Form-->
+        <div class="text-white" style="background-color: plum;">
+          <form class="py-5 px-5" method="post">
+            <h3 class="mb-3 mt-1 text-center">Daftar</h3>
+            {% csrf_token %}
+            
+            {% if form.errors %}
+              {% if form.email.errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  E-mail yang kamu masukkan sudah terdaftar di sistem kami.<br>
+                  Silakan <a href="{% url 'login' %}">login</a>.
+                </div>
+              {% endif %}
+              
+              {% if form.password2.errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  Password yang kamu masukkan tidak sama dengan konfirmasi password.
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endif %}
+              {% if form.password1.errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {% if "The password is too similar to the email address." in form.password1.errors %}
+                    Password terlalu mirip dengan alamat e-mail.
+                  {% elif "This password is too short. It must contain at least 8 characters." in form.password1.errors %}
+                    Password terlalu pendek. Minimal 8 karakter.
+                  {% elif "This password is too common." in form.password1.errors %}
+                    Password terlalu umum. Rawan dijebol hacker.
+                  {% else %}
+                    {{form.password1.errors}}
+                  {% endif %}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endif %}
+            {% endif %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+
+            <div class="form-group row mb-3">
+              <input 
+                type="text" 
+                name="username" 
+                maxlength="150" 
+                autocapitalize="none" 
+                autocomplete="username"
+                id="id_username"
+                class="form-control mb-3" 
+                placeholder="Username" required autofocus>
+            </div>
+            <div class="form-group row mb-3">
+              <input 
+                type="password" 
+                name="password1" 
+                autocomplete="new-password" 
+                placeholder="Password"
+                id="id_password1" 
+                class="form-control mb-3 required">
+            </div>
+            <div class="form-group row mb-3">
+              <input 
+                type="password" 
+                name="password2" 
+                autocomplete="new-password" 
+                id="id_password2" 
+                placeholder="Password Confirmation"
+                class="form-control mb-3" required>
+            </div>
+            <div class="row mb-3">
+              <input class="btn btn-light" type="submit" value="Register">
+            </div>
+
+            <div class="text-center">
+              <span>Sudah punya akun? Silahkan
+                <a class="text-white" href="{% url 'login' %}">Masuk disini</a>
+              </span>
+            </div>
+
+          </form>
+
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

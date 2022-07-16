@@ -1,0 +1,30 @@
+{% extends "header-footer.html" %}
+
+{% block content %}
+<div class="container mt-5 mb-5" id="list">
+    <h1 class="text-center mb-5">LIST MOVIE</h1>
+    <div class="row mb-3">
+        {% for a in data %}
+        <div class="col-md-3 mb-5">
+            <div class="card h-100">
+                <a href="/movie/{{a.fav_id}}">
+                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/{{ a.poster_path }}" alt="poster">
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title" style="font-weight:bolder;">{{ a.title }}</h5>
+                  <p class="card-text">
+                    <i class="fas fa-star" style="color:gold"></i>
+                    <i class="fas fa-star" style="color:gold"></i>
+                    <i class="fas fa-star" style="color:gold"></i>
+                    <i class="fas fa-star" style="color:gold"></i>
+                    <i class="fas fa-star" style="color:gold"></i>
+                    <h4>{{ a.vote_count }} voters</h4>
+                  </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
