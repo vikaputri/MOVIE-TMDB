@@ -36,7 +36,7 @@ pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
 ```
-* Create a superuser
+* Create a Superuser
 ```
 python manage.py createsuperuser
 ```
@@ -47,7 +47,7 @@ python manage.py runserver
 * Open browser and view the app by opening the link http://127.0.0.1:8000/
 
 ## Running the tests
-* run
+* Run
 ```
 coverage run manage.py test
 ```
@@ -60,9 +60,6 @@ python manage.py test
 coverage html
 ```
 * Open browser and view the report by opening the link ./htmlcov/index.html
-
-## Note
-
 
 ## Technologies Used
 * Python
