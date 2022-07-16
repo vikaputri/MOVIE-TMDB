@@ -17,9 +17,9 @@ A watch-list app built with Django using the TMDB (The Movie Database) API. This
 
 
 ## Technologies Used
-Python
-Django
-HTML
-CSS
-Bootstrap
-SQlite
+* Python
+* Django
+* HTML
+* CSS
+* Bootstrap
+* SQlite
