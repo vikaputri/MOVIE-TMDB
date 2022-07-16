@@ -28,7 +28,7 @@
                     <form method="GET">
                         <input type="hidden" name=fav_id value={{id}}>
                         <button type ="submit" class="btn btn-primary" >
-                            <i class="fas fa-heart px-3" style="color:white"></i>
+                            <i class="fas fa-heart" style="color:white"></i>
                             Save Favorite
                         </button>
                     </form>
@@ -36,7 +36,7 @@
                     <form method="GET">
                         <input type="hidden" name=delete_fav_id value={{fav_id}}}>
                         <button type ="submit" class="btn btn-primary" >
-                            <i class="fas fa-heart px-3" style="color:red"></i>
+                            <i class="fas fa-heart" style="color:red"></i>
                             Unsave Favorite
                         </button>
                     </form>
@@ -49,7 +49,7 @@
                     <form method="GET">
                         <input type="hidden" name=watch_id value={{id}}>
                         <button type ="submit" class="btn btn-primary" >
-                            <i class="fas fa-bookmark px-3" style="color:white"></i>
+                            <i class="fas fa-bookmark" style="color:white"></i>
                             Save Watchlist
                         </button>
                     </form>
@@ -57,7 +57,7 @@
                     <form method="GET">
                         <input type="hidden" name=delete_fav_id value={{watch_id}}}>
                         <button type ="submit" class="btn btn-primary">
-                            <i class="fas fa-bookmark px-3" style="color:orange"></i>
+                            <i class="fas fa-bookmark" style="color:orange"></i>
                             Unsave Favorite
                         </button>
                     </form>
@@ -72,7 +72,7 @@
                         data-bs-target="#exampleModal"
                         style="cursor: pointer;"
                         disabled>
-                        <i class="fa fa-play px-3"></i> 
+                        <i class="fa fa-play"></i> 
                         Play trailer
                     </button>
                     {% else %}
@@ -82,7 +82,7 @@
                         data-bs-toggle="modal" 
                         data-bs-target="#exampleModal"
                         style="cursor: pointer;">
-                        <i class="fa fa-play px-3"></i> 
+                        <i class="fa fa-play"></i> 
                         Play trailer
                     </button>
                     {% endif %}
